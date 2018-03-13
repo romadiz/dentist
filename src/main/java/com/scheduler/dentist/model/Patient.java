@@ -4,6 +4,8 @@ import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document
 @CompoundIndexes({
      @CompoundIndex(name = "patient_idx", def = "{'name':1,'surname':1,'phone':1}", unique = true)
@@ -16,6 +18,7 @@ public class Patient {
     private Long phone;
     private Boolean sms;
     private Doctor doctor;
+    private Date birthdate;
 
     public String getId() {
         return id;
@@ -65,21 +68,23 @@ public class Patient {
         this.doctor = doctor;
     }
 
-    public Patient(String name, String surname, Long phone, Boolean sms) {
-        this.name = name;
-        this.surname = surname;
-        this.phone = phone;
-        this.sms = sms;
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
     public Patient() {
     }
 
-    public Patient(String name, String surname, Long phone, Boolean sms, Doctor doctor) {
+    public Patient(String name, String surname, Long phone, Boolean sms, Doctor doctor, Date birthdate) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.sms = sms;
         this.doctor = doctor;
+        this.birthdate = birthdate;
     }
 }
